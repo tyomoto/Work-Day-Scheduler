@@ -4,8 +4,10 @@ var container = $('.container');
 // this will give us the current hour of the day
 var currentHour = moment().hour();
 
+// set so once html and css is all loaded, everything below will run.
 $(document).ready(function() {
-   // Displays current date in header container
+   
+    // Function to display current date in header container
     function displayTime() {
         var rightNow = moment().format('MMM DD, YYYY');
         currentDate.text(rightNow)
@@ -13,7 +15,7 @@ $(document).ready(function() {
 
     // Function to track what hour of the day it is
     // Loop funciton to check each block
-    // If statements to set the color/class for each timeblock
+    // If statements to set the color/class for each timeblock depending on hour of day
     function hourofday(){
         $(".time-block").each(function (){
             var timeblockhour = parseInt($(this).attr("id").split("hour")[1]);
@@ -33,26 +35,23 @@ $(document).ready(function() {
             }
         })
     }
-    // Refreshes page every second to get date
-    
+    // runs the function above
     hourofday();
     
-    
 
-    // Local Storage Set up for Save Button
-
+    // Local storage saving function
     $('.saveBtn').click(function(event){
         event.preventDefault();
         var time = $(this).parent().attr('id');
         var details = $(this).siblings('.daydetails').val();
         
+        // When button is clicked, storage will be set based on the variables time and details, which were assigned above
         localStorage.setItem(time, details);
-        // code to make sure local storage is being stored on save button click
-        console.log(time, details);
+       
     });
 
 
-    // load local storage
+    // Will check local storage for each time block value on page refresh and load it into the appropriate container
     $("#hour-9 .daydetails").val(localStorage.getItem('hour-9'));
     $('#hour-10 .daydetails').val(localStorage.getItem('hour-10'));
     $('#hour-11 .daydetails').val(localStorage.getItem('hour-11'));
@@ -63,15 +62,11 @@ $(document).ready(function() {
     $('#hour-16 .daydetails').val(localStorage.getItem('hour-16'));
     $('#hour-17 .daydetails').val(localStorage.getItem('hour-17'));
 
+    // Refreshes the date every second at the top of the page in the container so it will change
     setInterval(displayTime, 1000);
-   
    
 });
 
+// This log will just show what is currently in the local storage in console. This is not necessary and is just for viewing.
     console.log(localStorage);
 
-// Timeblocks for standard business hours
-// each timeblock is color coded to indicate whether it is past, present or future
-// click timeblock, user can enter an event
-// Click save button for timeblock, saved in local storage
-// refresh page, save event persists
