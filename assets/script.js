@@ -14,7 +14,26 @@ function displayTime() {
 // Function to track what hour of the day it is
 // Loop funciton to check each block
 // If statements to set the color/class for each timeblock
-
+function hourofday(){
+    $(".time-block").each(function (){
+        var timeblockhour = parseInt($(this).attr("id").split("hour")[1]);
+        
+        if (currentHour < timeblockhour) {
+            $(this).addClass('future');
+            $(this).removeClass('present');
+            $(this).removeClass('past');
+        } else if (currentHour === timeblockhour) {
+            $(this).addClass('present');
+            $(this).removeClass('future');
+            $(this).removeClass('past');
+        } else {
+            $(this).addClass('past');
+            $(this).removeClass('present');
+            $(this).removeClass('future');
+        }
+    })
+}
+hourofday();
 
 
 
