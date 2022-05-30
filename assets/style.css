@@ -17,12 +17,14 @@ textarea {
   text-align: center;
   background-color: transparent;
   color: black;
+  background-color: #878585;
   border-radius: 0;
   border-bottom: 10px solid black;
 }
 
-.description {
+.daydetails {
   white-space: pre-wrap;
+  color: black;
 }
 
 .time-block {
@@ -37,7 +39,7 @@ textarea {
 }
 
 .hour {
-  background-color: #ffffff;
+  background-color: #a1faf8;
   color: #000000;
   border-top: 1px dashed #000000;
 }
